@@ -1,0 +1,192 @@
+# ============================================================================
+# Ruff Configuration — dooservice agent
+# https://docs.astral.sh/ruff/configuration/
+# ============================================================================
+
+target-version = "py313"
+line-length = 120
+indent-width = 4
+show-fixes = true
+respect-gitignore = true
+
+exclude = [
+    ".git",
+    ".venv",
+    ".ruff_cache",
+    ".mypy_cache",
+    ".pytest_cache",
+    "__pypackages__",
+    "build",
+    "dist",
+]
+
+# ── Linting ────────────────────────────────────────────────────────
+[lint]
+select = [
+    # Core
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+
+    # Imports
+    "I",      # isort
+    "TID",    # flake8-tidy-imports
+    "ICN",    # flake8-import-conventions
+
+    # Modernization
+    "UP",     # pyupgrade
+
+    # Bugs & Security
+    "B",      # flake8-bugbear
+    "S",      # flake8-bandit
+
+    # Code quality
+    "SIM",    # flake8-simplify
+    "C4",     # flake8-comprehensions
+    "C90",    # mccabe complexity
+    "PIE",    # flake8-pie
+    "RET",    # flake8-return
+    "ISC",    # flake8-implicit-str-concat
+    "PERF",   # perflint
+
+    # Async
+    "ASYNC",  # flake8-async
+
+    # Type checking
+    "TCH",    # flake8-type-checking
+
+    # Pylint
+    "PLC",    # convention
+    "PLE",    # error
+    "PLR",    # refactor
+    "PLW",    # warning
+
+    # Testing
+    "PT",     # flake8-pytest-style
+
+    # Ruff-specific
+    "RUF",    # ruff
+]
+
+ignore = [
+    # Imports — relative imports within a package are idiomatic Python
+    "TID252",  # prefer absolute over relative imports from parent modules
+
+    # Security — acceptable in agent context
+    "S101",    # assert (used in tests and internal checks)
+    "S104",    # possible binding to all interfaces
+    "S603",    # subprocess call
+    "S607",    # partial executable path
+
+    # Complexity — relax for async orchestration code
+    "C901",    # too complex
+    "PLR0911", # too many return statements
+    "PLR0912", # too many branches
+    "PLR0913", # too many arguments
+    "PLR0915", # too many statements
+    "PLR2004", # magic value comparison
+
+    # Async
+    "ASYNC109", # async timeout without cancellation scope
+    "ASYNC221", # async context manager without await
+    "ASYNC240", # pathlib in async (local file I/O is trivial)
+
+    # Performance
+    "PERF203", # try-except in loop
+    "PERF401", # use list comprehension
+
+    # Type checking — gradual adoption
+    "TC001",   # move app imports into TYPE_CHECKING
+    "TC002",   # move third-party imports into TYPE_CHECKING
+    "TC003",   # move stdlib imports into TYPE_CHECKING
+
+    # Security — false positives
+    "S106",    # hardcoded password (CLI defaults like "odoo")
+    "S107",    # hardcoded password in function arg
+    "S108",    # /tmp usage (tests and temp files)
+    "S311",    # pseudo-random (used for jitter, not crypto)
+    "S608",    # SQL injection (internal psql commands)
+
+    # Misc
+    "PLW1510", # subprocess.run without check
+    "PLW2901", # loop variable overwritten
+]
+
+fixable = ["ALL"]
+unfixable = [
+    "F841",    # unused variables (may be intentional)
+]
+
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[lint.per-file-ignores]
+"**/proxy/labels.py" = [
+    "E501",  # Traefik label keys cannot be shortened
+]
+"**/dooservice_transport/**" = [
+    "E501",  # NATS publish lines encode full payloads inline — splitting them adds no clarity
+]
+"tests/*" = [
+    "S101",    # assert in tests
+    "PLR2004", # magic values in tests
+]
+"**/commands/*.py" = [
+    "PLR0915", # CLI commands can be long
+]
+"**/dooservice_api/config/settings.py" = [
+    "E501",  # long lines in env-driven settings are fine
+    "S105",  # hardcoded fallback secret for DEBUG mode
+]
+"**/dooservice_api/**/migrations/*.py" = [
+    "E501",
+    "I001",
+    "RUF012",
+]
+"**/dooservice_api/**/views.py" = [
+    "RUF012",  # DRF APIView/ViewSet idiom: mutable class attrs are the expected API
+]
+"**/dooservice_api/**/serializers.py" = [
+    "RUF012",  # DRF Meta.fields / nested serializer lists
+]
+"**/dooservice_api/**/models.py" = [
+    "RUF012",  # Django Meta lists/dicts are declarative
+]
+"**/dooservice_api/manage.py" = [
+    "PLC0415",  # Django management script imports lazily by design
+]
+"**/dooservice_api/worker_*.py" = [
+    "PLC0415",  # Temporal workers import after Django setup
+]
+
+[lint.isort]
+combine-as-imports = true
+force-sort-within-sections = true
+known-first-party = [
+    "dooservice_agent",
+    "dooservice_db_agent",
+    "dooservice_dns",
+    "dooservice_docker",
+    "dooservice_models",
+    "dooservice_orchestrator",
+    "dooservice_protocol",
+    "dooservice_s3",
+    "dooservice_sdk",
+]
+
+[lint.pylint]
+max-args = 8
+max-statements = 50
+max-returns = 6
+max-branches = 12
+
+[lint.mccabe]
+max-complexity = 10
+
+# ── Formatting ─────────────────────────────────────────────────────
+[format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = true
+docstring-code-line-length = 88

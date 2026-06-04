@@ -1,0 +1,17 @@
+[Unit]
+Description=DooService Agent
+After=network.target docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+User=dooservice
+ExecStart={exec_start} serve --config {config_path}
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=dooservice-agent
+
+[Install]
+WantedBy=multi-user.target

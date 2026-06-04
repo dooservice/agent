@@ -1,0 +1,60 @@
+[project]
+name = "dooservice-agent"
+version = "1.7.1"
+description = "dooservice agent — daemon that runs on tenant VPS servers"
+requires-python = ">=3.13"
+dependencies = [
+    "dooservice-sdk",
+    "dooservice-transport",
+    "dooservice-protocol",
+    "cyclopts>=4",
+    "msgspec>=0.21",
+    "psutil>=7",
+    "rich>=15",
+    "tomlkit>=0.14.0",
+    "apscheduler>=3.11.2",
+]
+
+[project.scripts]
+dooservice-agent = "dooservice_agent.cli:main"
+
+[project.urls]
+Homepage   = "https://dooservice.com"
+Repository = "https://github.com/dooservice/agent"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages   = ["src/dooservice_agent"]
+artifacts  = ["src/dooservice_agent/templates/*"]
+
+[tool.uv.sources]
+dooservice-sdk       = { git = "https://github.com/dooservice/core", subdirectory = "packages/dooservice-sdk",       tag = "1.8.1" }
+dooservice-models    = { git = "https://github.com/dooservice/core", subdirectory = "packages/dooservice-models",    tag = "1.8.1" }
+dooservice-db-agent  = { git = "https://github.com/dooservice/core", subdirectory = "packages/dooservice-db-agent",  tag = "1.8.1" }
+dooservice-docker    = { git = "https://github.com/dooservice/core", subdirectory = "packages/dooservice-docker",    tag = "1.8.1" }
+dooservice-dns       = { git = "https://github.com/dooservice/core", subdirectory = "packages/dooservice-dns",       tag = "1.8.1" }
+dooservice-s3        = { git = "https://github.com/dooservice/core", subdirectory = "packages/dooservice-s3",        tag = "1.8.1" }
+dooservice-protocol  = { git = "https://github.com/dooservice/core", subdirectory = "packages/dooservice-protocol",  tag = "1.8.1" }
+dooservice-transport = { git = "https://github.com/dooservice/core", subdirectory = "packages/dooservice-transport", tag = "1.8.1" }
+
+[dependency-groups]
+dev = [
+    "pytest>=9",
+    "pytest-asyncio>=1.3",
+    "basedpyright>=1.39",
+    "ruff>=0.15",
+    "pre-commit>=4.0",
+    "pyinstaller>=6.20",
+]
+
+[tool.basedpyright]
+pythonVersion = "3.13"
+typeCheckingMode = "standard"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths    = ["tests"]
+addopts      = ["--import-mode=importlib"]

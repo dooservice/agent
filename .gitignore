@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+wheels/
+
+# Build artifacts
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# Linting / type checking
+.ruff_cache/
+.mypy_cache/
+.pyright/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Keys and secrets
+keys/*.pem
+keys/*.key
+keys/*.pub
+*.pem
+*.key
+!*.key.example
+.env
+.env.*
+!.env.example
+
+# Orchestrator runtime data (keys, DB, WAL)
+orchestrator/keys/
+orchestrator/*.db
+orchestrator/*.db-shm
+orchestrator/*.db-wal
+
+# UV
+.python-version
+
+# Logs
+*.log
+packages/dooservice-orchestrator/data/
+packages/dooservice-orchestrator/config.toml
+packages/dooservice-orchestrator/data/
