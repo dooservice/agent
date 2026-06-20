@@ -1,6 +1,6 @@
 [project]
 name = "dooservice-agent"
-version = "1.7.1"
+version = "1.8.0"
 description = "dooservice agent — daemon that runs on tenant VPS servers"
 requires-python = ">=3.13"
 dependencies = [
