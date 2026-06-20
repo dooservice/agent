@@ -2,6 +2,16 @@
 
 All notable changes to `dooservice-agent` are documented here.
 
+## [1.8.0] — 2026-06-20
+
+### Changed
+- Updated `dooservice/core` dependencies to `1.9.0` — picks up `EnvironmentConfig.auto_backup_enabled` and the `env.update_backup_policy` job
+
+### Added
+- `BackupScheduler.execute_backup()`: skips the scheduled daily backup when `environment.config.auto_backup_enabled` is `False`, so the orchestrator can disable automatic backups per plan without touching manual backups
+
+---
+
 ## [1.7.1] — 2026-06-01
 
 ### Changed

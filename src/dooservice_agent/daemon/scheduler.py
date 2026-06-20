@@ -96,6 +96,10 @@ class BackupScheduler:
             self.unregister(env_id)
             return
 
+        if not env.config.auto_backup_enabled:
+            log.info("Backup for env %s skipped: auto_backup_enabled is False", env_id)
+            return
+
         try:
             project = await self.sdk.projects.get_by_id(project_id)
             await self.drop_previous_backups(env_id, project.name)
