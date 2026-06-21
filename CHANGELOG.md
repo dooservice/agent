@@ -2,6 +2,13 @@
 
 All notable changes to `dooservice-agent` are documented here.
 
+## [1.9.0] — 2026-06-21
+
+### Changed
+- Updated `dooservice/core` dependencies to `1.10.0` — picks up the `EnvProvisionArgs.base_workers` fix so new environments no longer provision with 0 Odoo workers
+
+---
+
 ## [1.8.0] — 2026-06-20
 
 ### Changed

@@ -280,7 +280,7 @@ wheels = [
 
 [[package]]
 name = "dooservice-agent"
-version = "1.7.1"
+version = "1.8.0"
 source = { editable = "." }
 dependencies = [
     { name = "apscheduler" },
@@ -308,9 +308,9 @@ dev = [
 requires-dist = [
     { name = "apscheduler", specifier = ">=3.11.2" },
     { name = "cyclopts", specifier = ">=4" },
-    { name = "dooservice-protocol", git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-protocol&tag=1.9.0" },
-    { name = "dooservice-sdk", git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-sdk&tag=1.9.0" },
-    { name = "dooservice-transport", git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-transport&tag=1.9.0" },
+    { name = "dooservice-protocol", git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-protocol&tag=1.10.0" },
+    { name = "dooservice-sdk", git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-sdk&tag=1.10.0" },
+    { name = "dooservice-transport", git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-transport&tag=1.10.0" },
     { name = "msgspec", specifier = ">=0.21" },
     { name = "psutil", specifier = ">=7" },
     { name = "rich", specifier = ">=15" },
@@ -330,7 +330,7 @@ dev = [
 [[package]]
 name = "dooservice-db-agent"
 version = "0.1.0"
-source = { git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-db-agent&tag=1.9.0#8851c97ba3cdd0d07ea9b26e9d10f0bcd7d5295e" }
+source = { git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-db-agent&tag=1.10.0#32e97fe86d6dd361dea12eb4ad947db4e38930bf" }
 dependencies = [
     { name = "dooservice-models" },
     { name = "msgspec" },
@@ -340,7 +340,7 @@ dependencies = [
 [[package]]
 name = "dooservice-dns"
 version = "0.1.0"
-source = { git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-dns&tag=1.9.0#8851c97ba3cdd0d07ea9b26e9d10f0bcd7d5295e" }
+source = { git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-dns&tag=1.10.0#32e97fe86d6dd361dea12eb4ad947db4e38930bf" }
 dependencies = [
     { name = "dnspython" },
     { name = "dooservice-models" },
@@ -350,7 +350,7 @@ dependencies = [
 [[package]]
 name = "dooservice-docker"
 version = "0.1.0"
-source = { git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-docker&tag=1.9.0#8851c97ba3cdd0d07ea9b26e9d10f0bcd7d5295e" }
+source = { git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-docker&tag=1.10.0#32e97fe86d6dd361dea12eb4ad947db4e38930bf" }
 dependencies = [
     { name = "docker" },
     { name = "dooservice-models" },
@@ -359,7 +359,7 @@ dependencies = [
 [[package]]
 name = "dooservice-models"
 version = "0.1.0"
-source = { git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-models&tag=1.9.0#8851c97ba3cdd0d07ea9b26e9d10f0bcd7d5295e" }
+source = { git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-models&tag=1.10.0#32e97fe86d6dd361dea12eb4ad947db4e38930bf" }
 dependencies = [
     { name = "msgspec" },
 ]
@@ -367,7 +367,7 @@ dependencies = [
 [[package]]
 name = "dooservice-protocol"
 version = "0.1.0"
-source = { git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-protocol&tag=1.9.0#8851c97ba3cdd0d07ea9b26e9d10f0bcd7d5295e" }
+source = { git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-protocol&tag=1.10.0#32e97fe86d6dd361dea12eb4ad947db4e38930bf" }
 dependencies = [
     { name = "msgspec" },
 ]
@@ -375,7 +375,7 @@ dependencies = [
 [[package]]
 name = "dooservice-s3"
 version = "0.1.0"
-source = { git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-s3&tag=1.9.0#8851c97ba3cdd0d07ea9b26e9d10f0bcd7d5295e" }
+source = { git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-s3&tag=1.10.0#32e97fe86d6dd361dea12eb4ad947db4e38930bf" }
 dependencies = [
     { name = "boto3" },
 ]
@@ -383,7 +383,7 @@ dependencies = [
 [[package]]
 name = "dooservice-sdk"
 version = "0.1.0"
-source = { git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-sdk&tag=1.9.0#8851c97ba3cdd0d07ea9b26e9d10f0bcd7d5295e" }
+source = { git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-sdk&tag=1.10.0#32e97fe86d6dd361dea12eb4ad947db4e38930bf" }
 dependencies = [
     { name = "docker" },
     { name = "dooservice-db-agent" },
@@ -400,7 +400,7 @@ dependencies = [
 [[package]]
 name = "dooservice-transport"
 version = "0.1.0"
-source = { git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-transport&tag=1.9.0#8851c97ba3cdd0d07ea9b26e9d10f0bcd7d5295e" }
+source = { git = "https://github.com/dooservice/core?subdirectory=packages%2Fdooservice-transport&tag=1.10.0#32e97fe86d6dd361dea12eb4ad947db4e38930bf" }
 dependencies = [
     { name = "msgspec" },
     { name = "nats-py" },
